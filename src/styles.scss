@@ -9,11 +9,45 @@
 // Be sure that you only ever include this mixin once!
 @include mat-core();
 
+$posterspy-blue: (
+    50 : #e0e8f6,
+    100 : #b3c7e8,
+    200 : #80a1d9,
+    300 : #4d7bc9,
+    400 : #265fbe,
+    500 : #0043b2,
+    600 : #003dab,
+    700 : #0034a2,
+    800 : #002c99,
+    900 : #001e8a,
+    A100 : #b6c0ff,
+    A200 : #8394ff,
+    A400 : #5068ff,
+    A700 : #3652ff,
+    contrast: (
+        50 : #000000,
+        100 : #000000,
+        200 : #000000,
+        300 : #ffffff,
+        400 : #ffffff,
+        500 : #ffffff,
+        600 : #ffffff,
+        700 : #ffffff,
+        800 : #ffffff,
+        900 : #ffffff,
+        A100 : #000000,
+        A200 : #000000,
+        A400 : #ffffff,
+        A700 : #ffffff,
+    )
+);
+
+
 // Define the palettes for your theme using the Material Design palettes available in palette.scss
 // (imported above). For each palette, you can optionally specify a default, lighter, and darker
 // hue. Available color palettes: https://material.io/design/color/
-$angular-posterspy-primary: mat-palette($mat-indigo);
-$angular-posterspy-accent: mat-palette($mat-pink, A200, A100, A400);
+$angular-posterspy-primary: mat-palette($posterspy-blue);
+$angular-posterspy-accent: mat-palette($posterspy-blue, A200, A100, A400);
 
 // The warn palette is optional (defaults to red).
 $angular-posterspy-warn: mat-palette($mat-red);
