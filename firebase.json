@@ -1,0 +1,19 @@
+{
+  "hosting": [
+    {
+      "target": "angular-posterspy",
+      "public": "dist/angular-posterspy",
+      "ignore": [
+        "firebase.json",
+        "**/.*",
+        "**/node_modules/**"
+      ],
+      "rewrites": [
+        {
+          "source": "**",
+          "destination": "/index.html"
+        }
+      ]
+    }
+  ]
+}

@@ -122,8 +122,13 @@
               "devServerTarget": "angular-posterspy:serve:production"
             }
           }
+        },
+        "deploy": {
+          "builder": "@angular/fire:deploy",
+          "options": {}
         }
       }
-    }},
+    }
+  },
   "defaultProject": "angular-posterspy"
 }

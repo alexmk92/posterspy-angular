@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "posterspy-28708": {
+      "hosting": {
+        "angular-posterspy": [
+          "posterspy-28708"
+        ]
+      }
+    }
+  }
+}
