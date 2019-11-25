@@ -4,7 +4,11 @@ import {HomePageComponent} from './home-page/home-page.component';
 
 
 const routes: Routes = [
-  { path: '', component: HomePageComponent }
+  { path: '', component: HomePageComponent },
+  {
+    // Lazy load the route so we can reduce module bundle size
+    path: 'login', loadChildren: () => import('./user/user.module').then(module => module.UserModule)
+  }
 ];
 
 @NgModule({
