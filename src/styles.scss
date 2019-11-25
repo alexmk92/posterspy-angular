@@ -53,7 +53,7 @@ $angular-posterspy-accent: mat-palette($posterspy-blue, A200, A100, A400);
 $angular-posterspy-warn: mat-palette($mat-red);
 
 // Create the theme object (a Sass map containing all of the palettes).
-$angular-posterspy-theme: mat-light-theme($angular-posterspy-primary, $angular-posterspy-accent, $angular-posterspy-warn);
+$angular-posterspy-theme: mat-dark-theme($angular-posterspy-primary, $angular-posterspy-accent, $angular-posterspy-warn);
 
 // Include theme styles for core and each component used in your app.
 // Alternatively, you can import and @include the theme mixins for each component
