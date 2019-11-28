@@ -8,7 +8,13 @@ const routes: Routes = [
   { path: '', component: HomePageComponent, canActivate: [AuthGuard] },
   {
     // Lazy load the route so we can reduce module bundle size
-    path: 'login', loadChildren: () => import('./user/user.module').then(module => module.UserModule)
+    path: 'login',
+    loadChildren: () => import('./user/user.module').then(module => module.UserModule),
+  },
+  {
+    path: 'poster/create',
+    loadChildren: () => import('./portfolio-editor/portfolio-editor.module').then(module => module.PortfolioEditorModule),
+    canActivate: [AuthGuard]
   }
 ];
 
