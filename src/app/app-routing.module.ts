@@ -12,8 +12,8 @@ const routes: Routes = [
     loadChildren: () => import('./user/user.module').then(module => module.UserModule),
   },
   {
-    path: 'poster/create',
-    loadChildren: () => import('./portfolio-editor/portfolio-editor.module').then(module => module.PortfolioEditorModule),
+    path: 'project',
+    loadChildren: () => import('./project/project.module').then(module => module.ProjectModule),
     canActivate: [AuthGuard]
   }
 ];

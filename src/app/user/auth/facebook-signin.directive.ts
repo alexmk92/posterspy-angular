@@ -1,12 +1,13 @@
 import {Directive, HostListener} from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import * as firebase from 'firebase/app';
+import {AngularFirestore} from '@angular/fire/firestore';
 
 @Directive({
   selector: '[appFacebookSignin]'
 })
 export class FacebookSigninDirective {
-  constructor(private afAuth: AngularFireAuth) {}
+  constructor(private afAuth: AngularFireAuth, private db: AngularFirestore) {}
 
   @HostListener('click')
   onclick() {
@@ -14,7 +15,7 @@ export class FacebookSigninDirective {
         // .catch(error => {
         //   if (error.email) {
         //     var email = error.email;
-        //     var user = this.db.list('user', ref => ref.equalTo(email, 'email'))
+        //     var user = this.afAuth.auth.
         //     console.log(user);
         //   }
         //   this.afAuth.auth.getRedirectResult().then(result => {

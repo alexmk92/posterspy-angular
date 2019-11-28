@@ -12,11 +12,15 @@ import { environment } from '../environments/environment';
 import { AngularFireModule } from '@angular/fire';
 import {AngularFirestoreModule} from '@angular/fire/firestore';
 import {AngularFireAuthModule} from '@angular/fire/auth';
+import { SectionListComponent } from './section-list/section-list.component';
+import { SectionComponent } from './section/section.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomePageComponent
+    HomePageComponent,
+    SectionListComponent,
+    SectionComponent
   ],
   imports: [
     BrowserModule,
