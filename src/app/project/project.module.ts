@@ -7,13 +7,13 @@ import { FormsModule } from '@angular/forms';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatDialogModule } from '@angular/material/dialog';
-import {ProjectRoutingModule} from './project-routing.module';
 import { SectionComponent } from './section/section.component';
-import { SectionListComponent } from './section-list/section-list.component';
+import { ProjectShowComponent } from './project-show/project-show.component';
+import { ProjectBrowseComponent } from './project-browse/project-browse.component';
 
 
 @NgModule({
-  declarations: [SectionComponent, SectionListComponent],
+  declarations: [SectionComponent, ProjectShowComponent, ProjectBrowseComponent],
   imports: [
     CommonModule,
     ProjectRoutingModule,

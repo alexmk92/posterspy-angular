@@ -5,14 +5,17 @@ import {AuthGuard} from './user/auth/auth.guard';
 
 
 const routes: Routes = [
-  { path: '', component: HomePageComponent, canActivate: [AuthGuard] },
+  {
+    path: '',
+    component: HomePageComponent
+  },
   {
     // Lazy load the route so we can reduce module bundle size
     path: 'login',
     loadChildren: () => import('./user/user.module').then(module => module.UserModule),
   },
   {
-    path: 'project',
+    path: 'projects',
     loadChildren: () => import('./project/project.module').then(module => module.ProjectModule),
     canActivate: [AuthGuard]
   }

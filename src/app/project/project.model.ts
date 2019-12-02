@@ -17,11 +17,18 @@ export interface Tag {
 
 export interface Section {
     id?: string;
+    widgets?: Widget[];
     position?: number;
-    type?: 'text' | 'media' | 'video';
     text?: string;
     image?: string;
     backgroundImage?: string;
     backgroundColor?: string;
     textColor?: string;
+}
+
+export interface Widget {
+    id?: string;
+    type?: 'text' | 'media' | 'video';
+    columns?: number;
+    content?: string;
 }

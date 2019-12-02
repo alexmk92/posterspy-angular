@@ -43,12 +43,25 @@ export class ProjectService {
    * @param projectId
    * @param data
    */
-  updateProjectDetails(projectId: string, data: Project) {
+  updateDetails(projectId: string, data: Project) {
     return this.db
         .collection('projects')
         .doc(projectId)
         .update({ ...data });
   }
+
+    /**
+     * Updates the details of a given project.
+     *
+     * @param projectId
+     * @param data
+     */
+    updateWidgets(sectionId: string, data: Section) {
+        return this.db
+            .collection('sections')
+            .doc(sectionId)
+            .update({ ...data });
+    }
 
   /**
    * Remove a specific section from the current project.
@@ -76,6 +89,28 @@ export class ProjectService {
             return this.db
                 .collection<Project>('projects', ref =>
                     ref.where('uid', '==', user.uid).orderBy('createdAt')
+                )
+                .valueChanges({ idField: 'id' });
+          } else {
+            return [];
+          }
+        })
+    );
+  }
+
+  /**
+   * Returns an observable list of all proiects which belong to the current user.
+   * This is used to show on their profile page.
+   *
+   * @param projectId: string
+   */
+  getProjectSections(projectId: string) {
+    return this.afAuth.authState.pipe(
+        switchMap(user => {
+          if (user) {
+            return this.db
+                .collection<Section>('sections', ref =>
+                    ref.where('projectId', '==', projectId).orderBy('position')
                 )
                 .valueChanges({ idField: 'id' });
           } else {

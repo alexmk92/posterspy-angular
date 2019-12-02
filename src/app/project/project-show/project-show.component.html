@@ -1,0 +1,17 @@
+<div *ngIf="isEditing">
+  <div
+    cdkDropList
+    cdkDropListOritentation="vertical"
+    class="boards"
+    (cdkDropListDropped)="drop($event)"
+  >
+    <app-section cdkDrag *ngFor="let section of sections" [section]="section">
+      <mat-icon cdkDragHandle class="handle">drag_indicator</mat-icon>
+    </app-section>
+  </div>
+</div>
+
+<div *ngIf="!isEditing">
+
+</div>
+
