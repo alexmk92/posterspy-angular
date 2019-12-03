@@ -1,1 +1,19 @@
-<p>section works!</p>
+<mat-card class="section-container">
+  <mat-card-header *ngIf="isEditing">
+    <ng-content></ng-content>
+    <mat-card-title>
+      {{ section.position }} of {{ section.widgets.length || 1 }}
+    </mat-card-title>
+    <mat-card-subtitle>
+      {{ section.id }}
+    </mat-card-subtitle>
+  </mat-card-header>
+
+  <div class="widgets" cdkDropList cdkDropListOrientation="horizontal" (cdkDropListDropped)="widgetDrop($event)">
+    <div class="widget-container" cdkDrag *ngFor="let widget of section.widgets; let i = index;">
+      <mat-card [ngClass]="widget.type">
+        {{ widget.content }}
+      </mat-card>
+    </div>
+  </div>
+</mat-card>

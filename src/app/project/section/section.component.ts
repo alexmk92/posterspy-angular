@@ -10,6 +10,7 @@ import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 })
 export class SectionComponent implements OnInit {
   @Input() section: Section;
+  @Input() isEditing: boolean;
 
   constructor(private projectService: ProjectService) { }
 

@@ -11,15 +11,19 @@ export class AuthGuard implements CanActivate {
       private afAuth: AngularFireAuth,
       private snack: SnackService
   ) {}
+
   async canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot): Promise<boolean> {
+    await this.timeout(300);
     const user = await this.afAuth.auth.currentUser;
     const isLoggedIn = !!user;
-
+    console.log(this.afAuth.auth.currentUser);
     if (!isLoggedIn) {
       this.snack.authError();
     }
-
     return isLoggedIn;
   }
 
+  timeout(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+  }
 }

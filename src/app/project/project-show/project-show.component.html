@@ -5,7 +5,7 @@
     class="boards"
     (cdkDropListDropped)="drop($event)"
   >
-    <app-section cdkDrag *ngFor="let section of sections" [section]="section">
+    <app-section cdkDrag *ngFor="let section of sections" [section]="section" [isEditing]="true">
       <mat-icon cdkDragHandle class="handle">drag_indicator</mat-icon>
     </app-section>
   </div>

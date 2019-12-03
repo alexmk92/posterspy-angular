@@ -24,6 +24,7 @@ export interface Section {
     backgroundImage?: string;
     backgroundColor?: string;
     textColor?: string;
+    coverImage?: string;
 }
 
 export interface Widget {

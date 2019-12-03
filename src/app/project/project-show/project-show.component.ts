@@ -17,6 +17,7 @@ export class ProjectShowComponent implements OnInit, OnDestroy {
   constructor(public projectService: ProjectService) { }
 
   ngOnInit() {
+    this.isEditing = true;
     this.subscription = this.projectService
         .getProjectSections('someId')
         .subscribe(sections => this.sections = sections);
