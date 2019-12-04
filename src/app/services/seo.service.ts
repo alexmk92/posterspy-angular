@@ -1,0 +1,23 @@
+import { Injectable } from '@angular/core';
+import { Title, Meta } from '@angular/platform-browser';
+import { Router } from '@angular/router';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class SeoService {
+
+  constructor(private title: Title, private meta: Meta, private router: Router) { }
+
+  generateTags({ title = '', description = '', image = '', tags = []}) {
+    this.title.setTitle(title);
+    this.meta.addTags([
+      // Open Graph
+      { name: 'og:url', content: `https://posterspy-new${this.router.url}` },
+      { name: 'og:title', content: title },
+      { name: 'og:description', content: description },
+      { name: 'og:image', content: image },
+      ...tags
+    ]);
+  }
+}

@@ -1,7 +1,8 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import { Subscription } from 'rxjs';
-import { Section } from '../project.model';
+import { Project } from '../project.model';
 import { ProjectService } from '../project.service';
+import {SeoService} from '../../services/seo.service';
 
 @Component({
   selector: 'app-project-browse',
@@ -9,15 +10,19 @@ import { ProjectService } from '../project.service';
   styleUrls: ['./project-browse.component.scss']
 })
 export class ProjectBrowseComponent implements OnInit, OnDestroy {
-  sections: Section[];
+  projects: Project[];
   subscription: Subscription;
 
-  constructor(public projectService: ProjectService) { }
+  constructor(public projectService: ProjectService, private seo: SeoService) { }
 
   ngOnInit() {
+    this.seo.generateTags({
+      title: 'Posters',
+      description: 'A list of posters from all PosterSpy artists'
+    });
     this.subscription = this.projectService
-        .getUserProjects()
-        .subscribe();
+        .getProjects()
+        .subscribe(projects => this.projects = projects);
   }
 
   ngOnDestroy() {

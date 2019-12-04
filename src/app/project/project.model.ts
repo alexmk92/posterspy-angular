@@ -1,7 +1,7 @@
 export interface Project {
     id?: string;
     title?: string;
-    isDraft: boolean;
+    isDraft?: boolean;
     sections?: Section[];
     tags?: Tag[];
     visibleFrom?: Date;
