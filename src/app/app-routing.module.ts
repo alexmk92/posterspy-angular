@@ -12,11 +12,12 @@ const routes: Routes = [
   {
     // Lazy load the route so we can reduce module bundle size
     path: 'login',
-    loadChildren: () => import('./user/user.module').then(module => module.UserModule),
+    loadChildren: () => import('./user/user.module').then(module => module.UserModule)
   },
   {
     path: 'projects',
     loadChildren: () => import('./project/project.module').then(module => module.ProjectModule),
+    canActivate: [AuthGuard]
   }
 ];
 
