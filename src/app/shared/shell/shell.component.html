@@ -30,7 +30,7 @@
       </button>
 
       <mat-menu #menu="matMenu">
-        <a mat-menu-item href="/logout">
+        <a mat-menu-item (click)="afAuth.auth.signOut();">
           <i>ICON</i>
           <span>Sign Out</span>
         </a>
