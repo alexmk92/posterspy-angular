@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import {Observable, Subscription} from 'rxjs';
-import {Project, Section} from '../project.model';
+import {Project, Section} from '../../types/project.model';
 import { ProjectService } from '../project.service';
 import {ActivatedRoute} from '@angular/router';
 import {AngularFirestore} from '@angular/fire/firestore';

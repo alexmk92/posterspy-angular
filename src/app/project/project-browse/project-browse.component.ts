@@ -1,6 +1,6 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import { Subscription } from 'rxjs';
-import { Project } from '../project.model';
+import { Project } from '../../types/project.model';
 import { ProjectService } from '../project.service';
 import {SeoService} from '../../services/seo.service';
 

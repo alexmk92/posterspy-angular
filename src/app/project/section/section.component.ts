@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ProjectService } from '../project.service';
-import { Section } from '../project.model';
+import { Section } from '../../types/project.model';
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 
 @Component({

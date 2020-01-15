@@ -4,7 +4,7 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import * as firebase from 'firebase/app';
 import { tap } from 'rxjs/operators';
 import { switchMap, map } from 'rxjs/operators';
-import { Project, Section, Tag } from './project.model';
+import { Project, Section, Tag } from '../types';
 import {SeoService} from '../services/seo.service';
 import {Observable} from 'rxjs';
 
@@ -23,6 +23,7 @@ export class ProjectService {
         return this.db.collection('projects').add({
             ...data,
             uid: user.uid,
+            status: 'DRAFT',
             sections: [],
             tags: [],
         });
