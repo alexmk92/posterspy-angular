@@ -10,10 +10,11 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { SectionComponent } from './section/section.component';
 import { ProjectShowComponent } from './project-show/project-show.component';
 import { ProjectBrowseComponent } from './project-browse/project-browse.component';
+import { ProjectCardComponent } from './project-card/project-card.component';
 
 
 @NgModule({
-  declarations: [SectionComponent, ProjectShowComponent, ProjectBrowseComponent],
+  declarations: [SectionComponent, ProjectShowComponent, ProjectBrowseComponent, ProjectCardComponent],
   imports: [
     CommonModule,
     ProjectRoutingModule,

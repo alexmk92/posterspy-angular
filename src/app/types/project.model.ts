@@ -4,6 +4,8 @@ import {Tag} from './tag.model';
 export interface Project {
     id?: string;
     title?: string;
+    coverImageUrl: string;
+    thumbnailUrl: string;
     isDraft?: boolean;
     sections?: Section[];
     tags?: Tag[];
