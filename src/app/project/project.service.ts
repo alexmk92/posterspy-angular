@@ -107,18 +107,13 @@ export class ProjectService {
      */
     getProjects(userId = null, category = null) {
         return this.db
-            .collection<Project>('projects', ref =>
-                ref.orderBy('priority')
-            )
+            .collection<Project>('projects', ref => {
+                if (userId) {
+                    ref.where('uid', '==', userId);
+                }
+                return ref.orderBy('createdAt');
+            })
             .valueChanges({ idField: 'id' });
-        // return this.db
-        //     .collection<Project>('projects', ref => {
-        //         if (userId) {
-        //             ref.where('uid', '==', userId);
-        //         }
-        //         return ref.orderBy('createdAt');
-        //     })
-        //     .valueChanges({ idField: 'id' });
     }
 
     /**
