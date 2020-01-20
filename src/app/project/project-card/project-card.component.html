@@ -1,1 +1,4 @@
-<p>project-card works!</p>
+<mat-card [style.width.px]="imageProps.width" [style.height.px]="imageProps.height">
+    <img src="{{ imageProps.src }}" alt="{{ imageProps.alt }}" [style.maxWidth.%]="100" />
+    {{ project.title }}
+</mat-card>

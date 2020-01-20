@@ -1,11 +1,12 @@
 import {Section} from './section.model';
 import {Tag} from './tag.model';
+import {Image} from './image.model';
 
 export interface Project {
     id?: string;
     title?: string;
-    coverImageUrl: string;
-    thumbnailUrl: string;
+    coverImage?: Image;
+    thumbnailImage?: Image;
     isDraft?: boolean;
     sections?: Section[];
     tags?: Tag[];
@@ -14,3 +15,7 @@ export interface Project {
     updatedAt?: Date;
 }
 
+export interface ProjectRow {
+    index?: number;
+    projects: Project[];
+}
