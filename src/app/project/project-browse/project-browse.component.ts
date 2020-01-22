@@ -1,6 +1,6 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import { Subscription } from 'rxjs';
-import { Project } from '../../types/project.model';
+import {Project, ProjectCell, ProjectRow} from '../../types/project.model';
 import { ProjectService } from '../project.service';
 import {SeoService} from '../../services/seo.service';
 import {MasonryService} from '../../services/masonry.service';
@@ -12,8 +12,7 @@ import {Image} from '../../types/image.model';
   styleUrls: ['./project-browse.component.scss']
 })
 export class ProjectBrowseComponent implements OnInit, OnDestroy {
-  projects: Project[];
-  images: Image[];
+  projectRows: ProjectRow[];
   subscription: Subscription;
 
   constructor(public projectService: ProjectService, private seo: SeoService, private masonry: MasonryService) { }
@@ -26,7 +25,6 @@ export class ProjectBrowseComponent implements OnInit, OnDestroy {
     this.subscription = this.projectService
         .getProjects()
         .subscribe(projects => {
-          this.projects = projects;
           const images  = projects.map((project, index) => {
             let image = project.thumbnailImage ? project.thumbnailImage : project.coverImage;
             image = { index, ...image };
@@ -34,7 +32,17 @@ export class ProjectBrowseComponent implements OnInit, OnDestroy {
             return image;
           });
 
-          this.images = this.masonry.calculateLayoutForContainerWidth(images, 1200, 1200);
+          const imageRows = this.masonry.calculateLayoutForContainerWidth(images, window.innerWidth, window.innerHeight);
+          this.projectRows = imageRows.map((imageRow: Array<object>) => {
+              return imageRow.map((image: Image, imageIndex: number) => {
+                  return {
+                      index: imageIndex,
+                      image,
+                      project: projects[image.index]
+                  };
+              });
+          });
+          console.log(this.projectRows);
         });
   }
 

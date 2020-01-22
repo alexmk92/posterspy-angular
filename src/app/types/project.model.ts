@@ -17,5 +17,11 @@ export interface Project {
 
 export interface ProjectRow {
     index?: number;
-    projects: Project[];
+    projects: ProjectCell[];
+}
+
+export interface ProjectCell {
+    index?: number;
+    project: Project;
+    image: Image;
 }

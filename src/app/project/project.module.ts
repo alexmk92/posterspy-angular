@@ -11,10 +11,17 @@ import { SectionComponent } from './section/section.component';
 import { ProjectShowComponent } from './project-show/project-show.component';
 import { ProjectBrowseComponent } from './project-browse/project-browse.component';
 import { ProjectCardComponent } from './project-card/project-card.component';
+import {EncodeUriPipe} from '../pipes/encode-uri-pipe';
 
 
 @NgModule({
-  declarations: [SectionComponent, ProjectShowComponent, ProjectBrowseComponent, ProjectCardComponent],
+  declarations: [
+      SectionComponent,
+      ProjectShowComponent,
+      ProjectBrowseComponent,
+      ProjectCardComponent,
+      EncodeUriPipe
+  ],
   imports: [
     CommonModule,
     ProjectRoutingModule,
@@ -22,7 +29,7 @@ import { ProjectCardComponent } from './project-card/project-card.component';
     FormsModule,
     DragDropModule,
     MatDialogModule,
-    MatButtonToggleModule,
+    MatButtonToggleModule
   ]
 })
 export class ProjectModule { }

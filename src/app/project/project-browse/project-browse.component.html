@@ -1,4 +1,6 @@
-<div>
+<div class="container">
   <h1>Project Browse Page</h1>
-  <app-project-card *ngFor="let image of images" [project]="projects[image.index]" [imageProps]="image"></app-project-card>
+  <div class="project-row" *ngFor="let projectRow of projectRows">
+    <app-project-card *ngFor="let projectCell of projectRow" [project]="projectCell.project" [imageProps]="projectCell.image"></app-project-card>
+  </div>
 </div>

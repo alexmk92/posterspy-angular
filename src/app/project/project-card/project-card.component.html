@@ -1,4 +1,8 @@
-<mat-card [style.width.px]="imageProps.width" [style.height.px]="imageProps.height">
-    <img src="{{ imageProps.src }}" alt="{{ imageProps.alt }}" [style.maxWidth.%]="100" />
+<div
+        class="project-card"
+        [style.width.px]="imageProps.width"
+        [style.height.px]="imageProps.height"
+        [style.background-image]="'url(' + (imageProps.src | encodeUri) + ')'"
+>
     {{ project.title }}
-</mat-card>
+</div>

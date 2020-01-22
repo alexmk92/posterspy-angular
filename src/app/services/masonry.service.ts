@@ -1,28 +1,37 @@
 import { Injectable } from '@angular/core';
 import {Image} from '../types/image.model';
 
-const sum = (sequence) => sequence.reduce((sum, next) => sum + next, 0);
-const max = (sequence) => sequence.reduce((max, next) => max ? next : max, 0);
+export interface MasonryOptions {
+  padding?: number;
+  divisor?: number;
+}
 
+// Inspired by: https://medium.com/swlh/in-search-of-the-perfect-image-gallery-34f46f7615a1
+const sum = (sequence) => sequence.reduce((totalSum, next) => totalSum + next, 0);
+const max = (sequence) => sequence.reduce((maxValue, nextValue) => maxValue ? nextValue : maxValue, 0);
 
 @Injectable({
   providedIn: 'root'
 })
 export class MasonryService {
   private exampleImages = [
-    { alt: null, src: 'https://posterspy.com/wp-content/uploads/2018/12/WEB-Playing-Card-Fantastic-Beasts-HarryPotter18-24-poster-800x1066.jpg', ratio: 0.7504, width: 800, height: 1066 },
-    { alt: null, src: 'https://posterspy.com/wp-content/uploads/2018/05/Claws-Illustrated-Movie-Poster-Ladislas-web-800x1067.jpg', ratio: 0.7497 , width: 800, height: 1067 },
-    { alt: null, src: 'https://posterspy.com/wp-content/uploads/2018/02/Pacific-Rim-Uprising-Alternative-Poster-Ladislas-web-800x600.jpg', ratio: 1.333, width: 800, height: 600 },
-    { alt: null, src: 'https://posterspy.com/wp-content/uploads/2018/01/web-POSTER-Prisoners-Hugh-Ladislas.jpg', ratio: 0.7577, width: 688, height: 908 },
-    { alt: null, src: 'https://posterspy.com/wp-content/uploads/2018/01/Prisoners-Loki-poster-ladislas-illustration-web.jpg', ratio: 0.7502, width: 688, height: 917 },
-    { alt: null, src: 'https://posterspy.com/wp-content/uploads/2018/01/illustration-Phantom-Thread-Alternative-Movie-Poster-Ladislas-web-800x1067.jpg', ratio: 0.7494, width: 688, height: 918 },
-    { alt: null, src: 'https://posterspy.com/wp-content/uploads/2017/12/WEB-new-Three-billboards-outside-Ebbing-Missouri-poster-classic_48_sheet-800x400.jpg', ratio: 2, width: 688, height: 344 },
-    { alt: null, src: 'https://posterspy.com/wp-content/uploads/2017/03/LaLaLand-Alternative-Movie-Poster-ladislas-web-1000-800x600.jpg', ratio: 1.33, width: 800, height: 600 },
-    { alt: null, src: 'https://posterspy.com/wp-content/uploads/2017/12/Insidious-The-Lasy-Key-alternative-movie-poster-illustration-V2no-frame-web-800x1067.jpg', ratio: 0.7497, width: 800, height: 1067 },
-    { alt: null, src: 'https://posterspy.com/wp-content/uploads/2017/12/Talenthouse-illustration-Insidious-The-Lasy-Key-alternative-movie-poster-Ladislas-web-800x1067.jpg', ratio: 0.7497, width: 800, height: 1067 },
-    { alt: null, src: 'https://posterspy.com/wp-content/uploads/2017/02/kong-Skull-island-Alternative-Movie-Poster-WEB-800x1067.jpg', ratio: 0.7497, width: 800, height: 1067 },
-    { alt: null, src: 'https://posterspy.com/wp-content/uploads/2017/02/web-Into-The-Wild-variant-alternative-poster-ladislas-1000.jpg', ratio: 0.7502, width: 688, height: 917 },
+    { title: 'test', alt: null, src: 'https://posterspy.com/wp-content/uploads/2018/12/WEB-Playing-Card-Fantastic-Beasts-HarryPotter18-24-poster-800x1066.jpg', ratio: 0.7504, width: 800, height: 1066 },
+    { title: 'test', alt: null, src: 'https://posterspy.com/wp-content/uploads/2018/05/Claws-Illustrated-Movie-Poster-Ladislas-web-800x1067.jpg', ratio: 0.7497 , width: 800, height: 1067 },
+    { title: 'test', alt: null, src: 'https://posterspy.com/wp-content/uploads/2018/02/Pacific-Rim-Uprising-Alternative-Poster-Ladislas-web-800x600.jpg', ratio: 1.333, width: 800, height: 600 },
+    { title: 'test', alt: null, src: 'https://posterspy.com/wp-content/uploads/2018/01/web-POSTER-Prisoners-Hugh-Ladislas.jpg', ratio: 0.7577, width: 688, height: 908 },
+    { title: 'test', alt: null, src: 'https://posterspy.com/wp-content/uploads/2018/01/Prisoners-Loki-poster-ladislas-illustration-web.jpg', ratio: 0.7502, width: 688, height: 917 },
+    { title: 'test', alt: null, src: 'https://posterspy.com/wp-content/uploads/2018/01/illustration-Phantom-Thread-Alternative-Movie-Poster-Ladislas-web-800x1067.jpg', ratio: 0.7494, width: 688, height: 918 },
+    { title: 'test', alt: null, src: 'https://posterspy.com/wp-content/uploads/2017/12/WEB-new-Three-billboards-outside-Ebbing-Missouri-poster-classic_48_sheet-800x400.jpg', ratio: 2, width: 688, height: 344 },
+    { title: 'test', alt: null, src: 'https://posterspy.com/wp-content/uploads/2017/03/LaLaLand-Alternative-Movie-Poster-ladislas-web-1000-800x600.jpg', ratio: 1.33, width: 800, height: 600 },
+    { title: 'test', alt: null, src: 'https://posterspy.com/wp-content/uploads/2017/12/Insidious-The-Lasy-Key-alternative-movie-poster-illustration-V2no-frame-web-800x1067.jpg', ratio: 0.7497, width: 800, height: 1067 },
+    { title: 'test', alt: null, src: 'https://posterspy.com/wp-content/uploads/2017/12/Talenthouse-illustration-Insidious-The-Lasy-Key-alternative-movie-poster-Ladislas-web-800x1067.jpg', ratio: 0.7497, width: 800, height: 1067 },
+    { title: 'test', alt: null, src: 'https://posterspy.com/wp-content/uploads/2017/02/kong-Skull-island-Alternative-Movie-Poster-WEB-800x1067.jpg', ratio: 0.7497, width: 800, height: 1067 },
+    { title: 'test', alt: null, src: 'https://posterspy.com/wp-content/uploads/2017/02/web-Into-The-Wild-variant-alternative-poster-ladislas-1000.jpg', ratio: 0.7502, width: 688, height: 917 },
   ];
+  private options: MasonryOptions = {
+    padding: 2.5,
+    divisor: 0.45
+  };
 
   constructor() { }
 
@@ -30,32 +39,39 @@ export class MasonryService {
    * @param images - a list of images to be used
    * @param containerWidth - the width of the container
    * @param containerHeight - the height of the container
+   * @param options - the masonry options to use
    */
-  public calculateLayoutForContainerWidth = (images: Image[], containerWidth: number, containerHeight: number): Image[] => {
+  public calculateLayoutForContainerWidth = (images: Image[], containerWidth: number, containerHeight: number, options: MasonryOptions): Image[] => {
+    Object.assign(this.options, options);
     if (images.length === 0) {
       images = this.exampleImages;
     }
     // Ensure images are valid
     images = images.filter(image => {
       if (!image.ratio) {
-        image.ratio = image.height / image.width;
+        image.ratio = image.width / image.height;
       }
 
       return (image && image.height && image.width);
     });
 
-    const gutter = 20;
-    const { idealHeight, totalRows } = this.perfectNumberOfRows(images, containerWidth, containerHeight);
+    images = [...images, ...images.reverse(), ...images, ...images, ...images, ...images, ...images, ...images.reverse()];
+
+    const gutter = this.options.padding;
+    const { totalRows, idealHeight } = this.perfectNumberOfRows(images, containerWidth, containerHeight);
+    console.log(totalRows, idealHeight);
     let laidOutImages = [];
 
     if (totalRows < 1) {
-      laidOutImages = images.map(image => ({
-        ...image,
-        alt: image.alt,
-        src: image.src,
-        width: ((idealHeight * image.ratio) - (gutter * 2)),
-        height: idealHeight
-      }));
+      laidOutImages = [
+        images.map(image => ({
+          ...image,
+          alt: image.alt,
+          src: image.src,
+          width: (Math.floor(idealHeight * image.ratio) - (gutter * 2)),
+          height: idealHeight
+        }))
+      ];
     } else {
       const weights    = images.map(image => Math.floor(image.ratio * 100));
       const partitions = this.bstLinearPartition(weights, totalRows);
@@ -70,8 +86,8 @@ export class MasonryService {
             ...image,
             alt: image.alt,
             src: image.src,
-            width: (containerWidth / summedRatios) * image.ratio - (gutter * 2),
-            height: (containerWidth / summedRatios)
+            width: Math.floor((containerWidth / summedRatios) * image.ratio) - (gutter * 2),
+            height: Math.floor(containerWidth / summedRatios)
           };
         });
       });
@@ -90,10 +106,10 @@ export class MasonryService {
    * @return object
    */
   private perfectNumberOfRows = (images, width: number = 1, height: number = 1) => {
-    const idealHeight = height / 2;
-    const totalRows   = Math.floor((images.reduce((total, image) => total + image.ratio * idealHeight, 0)) / width);
+      const idealHeight = Math.floor(height * this.options.divisor);
+      const totalWidth  = images.reduce((total, image) => total + image.ratio * idealHeight, 0);
 
-    return { idealHeight, totalRows };
+      return { idealHeight, totalRows: Math.round(totalWidth / width)};
   }
 
   /**
