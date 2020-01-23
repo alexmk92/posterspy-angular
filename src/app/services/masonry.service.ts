@@ -41,7 +41,7 @@ export class MasonryService {
    * @param containerHeight - the height of the container
    * @param options - the masonry options to use
    */
-  public calculateLayoutForContainerWidth = (images: Image[], containerWidth: number, containerHeight: number, options: MasonryOptions): Image[] => {
+  public calculateLayoutForContainerWidth = (images: Image[], containerWidth: number, containerHeight: number, options: MasonryOptions = {}): Image[] => {
     Object.assign(this.options, options);
     if (images.length === 0) {
       images = this.exampleImages;
@@ -59,7 +59,6 @@ export class MasonryService {
 
     const gutter = this.options.padding;
     const { totalRows, idealHeight } = this.perfectNumberOfRows(images, containerWidth, containerHeight);
-    console.log(totalRows, idealHeight);
     let laidOutImages = [];
 
     if (totalRows < 1) {

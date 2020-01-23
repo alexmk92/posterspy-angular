@@ -64,3 +64,11 @@ $angular-posterspy-theme: mat-dark-theme($angular-posterspy-primary, $angular-po
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+$gutter: 10px;
+.container {
+    overflow-x: hidden;
+    max-width: 1600px;
+    width: calc(100% - $gutter); // prevent screen width exceeding
+    padding: $gutter ($gutter * 2);
+}

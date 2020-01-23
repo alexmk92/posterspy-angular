@@ -22,6 +22,8 @@ export class ProjectBrowseComponent implements OnInit, OnDestroy {
       title: 'Posters',
       description: 'A list of posters from all PosterSpy artists'
     });
+
+    const container   = document.querySelector('#project-container');
     this.subscription = this.projectService
         .getProjects()
         .subscribe(projects => {
@@ -32,7 +34,8 @@ export class ProjectBrowseComponent implements OnInit, OnDestroy {
             return image;
           });
 
-          const imageRows = this.masonry.calculateLayoutForContainerWidth(images, window.innerWidth, window.innerHeight);
+          const width  = container ? container.getBoundingClientRect().width : window.innerWidth;
+          const imageRows = this.masonry.calculateLayoutForContainerWidth(images, width, window.innerHeight, { padding: 5 });
           this.projectRows = imageRows.map((imageRow: Array<object>) => {
               return imageRow.map((image: Image, imageIndex: number) => {
                   return {
@@ -42,7 +45,6 @@ export class ProjectBrowseComponent implements OnInit, OnDestroy {
                   };
               });
           });
-          console.log(this.projectRows);
         });
   }
 

@@ -4,6 +4,7 @@ import {Image} from './image.model';
 
 export interface Project {
     id?: string;
+    slug?: string;
     title?: string;
     coverImage?: Image;
     thumbnailImage?: Image;

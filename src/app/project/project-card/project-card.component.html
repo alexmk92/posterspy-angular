@@ -1,8 +1,7 @@
-<div
-        class="project-card"
-        [style.width.px]="imageProps.width"
-        [style.height.px]="imageProps.height"
-        [style.background-image]="'url(' + (imageProps.src | encodeUri) + ')'"
->
-    {{ project.title }}
+<div class="project-card"             [style.width.px]="imageProps.width"
+     [style.height.px]="imageProps.height"
+     [style.background-image]="'url(' + (imageProps.src | encodeUri) + ')'">
+    <a href="/projects/{{project.slug}}"></a>
+    <span>{{ project.title }}</span>
 </div>
+
